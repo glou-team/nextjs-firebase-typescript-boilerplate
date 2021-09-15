@@ -1,37 +1,33 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import useSWR from 'swr'
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import { useEffect, useState } from 'react'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
-export async function getStaticProps() {
-  return {
-    props: {}
-  }
+// Only fetch the title and blurb.
+// const FirestoreBlogPostsURL = `https://firestore.googleapis.com/v1/projects/${process.env.FIREBASE_PROJECT_ID}/databases/(default)/documents/posts?mask.fieldPaths=blurb&mask.fieldPaths=title`;
+// const fetcher = (url) => fetch(url).then((r) => r.json());
+
+export async function getServerSideProps() {
+  // const data = await fetcher(FirestoreBlogPostsURL);
+
+  const posts = [
+    {
+      title: 'titulo 2123123',
+      blurb: 'blu123123rb2',
+      pid: '2234'
+    }
+  ]
+
+  return { props: { posts } }
 }
 
-function Home() {
-  const [data, setData] = useState(null)
-  // const { data, error } = useSWR(FirestoreBlogPostsURL, fetcher);
+function Blog(props) {
+  // const initialData = props.posts;
+  // const { data } = useSWR(FirestoreBlogPostsURL, fetcher, { initialData });
+  // initialData is already transformed, so only transform refetches
 
-  useEffect(() => {
-    setTimeout(() => {
-      setData([
-        {
-          title: 'titulo 1',
-          blurb: 'blurb1',
-          pid: '1'
-        },
-        {
-          title: 'titulo 2',
-          blurb: 'blurb2',
-          pid: '2'
-        }
-      ])
-    }, 2000)
-  }, [])
+  const posts = props.posts
 
   return (
     <div className="container">
@@ -42,29 +38,31 @@ function Home() {
 
       <main>
         <Header />
-        <h1 className="title">
-          Welcome to{' '}
-          <a href="https://github.com/jthegedus/firebase-gcp-examples">
-            Next.js on Firebase
-          </a>
-        </h1>
-
+        <h1 className="title">Blog Posts</h1>
         <ul>
-          <li>Static page with client-side data fetching</li>
           <li>
+            SSR page with <code>getServerSideProps()</code>
+          </li>
+          <li>
+            Data fetched from Firestore use{' '}
             <a href="https://swr.now.sh/" target="_blank" rel="noreferrer">
               SWR
             </a>{' '}
-            is used to retrieve data from Firestore
+            during SSR
           </li>
+          <li>
+            Re-rendered on <em>each</em> request, so always latest data
+          </li>
+          <li>New posts will show on hard refresh</li>
+          <ul>
+            <li>(browsers cache the SSR result for some time)</li>
+          </ul>
         </ul>
 
-        <p className="description">An index page for a personal site</p>
-        <p className="description">Some Blog Posts</p>
+        <p className="description">Blog Posts</p>
         <div className="grid">
-          {!data && <div>Loading Blog Posts...</div>}
-          {data &&
-            data.map((post) => (
+          {posts &&
+            posts.map((post) => (
               <Link
                 href="blog/[pid]"
                 as={`/blog/${post.pid}`}
@@ -211,4 +209,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Blog
