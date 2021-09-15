@@ -1,9 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
 
+import * as S from './styles'
+
 export default function Header() {
   return (
-    <header>
+    <S.Container>
       <Link href="/">
         <a>Home</a>
       </Link>{' '}
@@ -13,6 +15,6 @@ export default function Header() {
       <Link href="/about">
         <a>About</a>
       </Link>
-    </header>
+    </S.Container>
   )
 }
