@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> Should render the footer 1`] = `
+<footer
+  class="jsx-920434584"
+>
+  Powered by
+  <a
+    class="jsx-920434584"
+    href="https://firebase.google.com/products/hosting"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    <img
+      alt="Firebase Hosting Logo"
+      class="jsx-920434584"
+      src="/firebase-hosting.svg"
+    />
+  </a>
+  &
+  <a
+    class="jsx-920434584"
+    href="https://zeit.co?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    <img
+      alt="Next.js Logo"
+      class="jsx-920434584 nextjs"
+      src="/nextjs.svg"
+    />
+  </a>
+</footer>
+`
