@@ -35,6 +35,7 @@
     "react/prop-types": "off",
     // Desabilitar pq usamos next
     "react/react-in-jsx-scope": "off",
+    "react/display-name": "off",
     // Faz com que seja tipado o retorno apenas quando o TS não entende o retorno implícito
     "@typescript-eslint/explicit-module-boundary-types": "off"
   }
