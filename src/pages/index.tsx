@@ -1,10 +1,10 @@
 import Header from '../components/molecules/Header'
 import Footer from '../components/molecules/Footer'
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   return {
     props: {
-      data: 'Data from some external API fetched at build-time'
+      data: 'Server side props'
     }
   }
 }
@@ -13,9 +13,8 @@ function Home({ data = '' }) {
   return (
     <main>
       <Header />
-      <h1>Home - SSG</h1>
-      <h3>{data}</h3>
-      <Footer />
+      <p>{data}</p>
+      <Footer message="Powered by Glou" />
     </main>
   )
 }

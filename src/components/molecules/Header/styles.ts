@@ -5,6 +5,6 @@ export const Container = styled.header`
   height: 100px;
   border-top: 1px solid #eaeaea;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 `
